@@ -7,7 +7,7 @@ import java.net.InetAddress
 import java.net.SocketTimeoutException
 import kotlin.concurrent.thread
 
-class ServiceDiscovery(val destination: String, val port: Int, val token: String) {
+class ServiceDiscovery(val destination: String, val destinationPort: Int, val token: String) {
     fun discover(): Observable<Info> = Observable.create<Info> { emitter ->
         thread(start = true) {
             val udp = DatagramSocket()
@@ -37,7 +37,7 @@ class ServiceDiscovery(val destination: String, val port: Int, val token: String
     private fun DatagramSocket.broadcast() {
         val ip = InetAddress.getByName(destination)
         val sendData = token.toByteArray()
-        val sendPacket = DatagramPacket(sendData, sendData.size, ip, port)
+        val sendPacket = DatagramPacket(sendData, sendData.size, ip, destinationPort)
         this.send(sendPacket)
     }
 
