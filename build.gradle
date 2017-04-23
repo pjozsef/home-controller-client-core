@@ -1,4 +1,4 @@
-apply from: 'https://gist.githubusercontent.com/pjozsef/34b13acff0088ca5c120a4f9a52de52c/raw/e71e1e1e15cd0aaee2549dbdf4037dadcecfe962/version.gradle'
+apply from: 'https://gist.githubusercontent.com/pjozsef/34b13acff0088ca5c120a4f9a52de52c/raw'
 
 version gitVersionName
 group 'com.github.pjozsef'
