@@ -8,7 +8,8 @@ import java.net.SocketTimeoutException
 import kotlin.concurrent.thread
 
 class ServiceDiscovery(val destination: String, val destinationPort: Int, val token: String) {
-    fun discover(): Observable<Info> = Observable.create<Info> { emitter ->
+
+    fun discover(): Observable<ServerInfo> = Observable.create<ServerInfo> { emitter ->
         thread(start = true) {
             val udp = DatagramSocket()
             udp.broadcast()
@@ -20,7 +21,7 @@ class ServiceDiscovery(val destination: String, val destinationPort: Int, val to
             try {
                 while (true) {
                     udp.receive(packet)
-                    val info = Info.of(packet.message())
+                    val info = ServerInfo.of(packet.message())
                     info?.let {
                         emitter.onNext(it)
                     }

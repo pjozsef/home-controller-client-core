@@ -1,6 +1,6 @@
 package com.github.pjozsef.control.discovery
 
-data class Info(
+data class ServerInfo(
         val name: String,
         val ip:String,
         val os: String,
@@ -8,7 +8,7 @@ data class Info(
         val timestamp: Long = System.currentTimeMillis()) {
 
     companion object {
-        fun of(input: String): Info? {
+        fun of(input: String): ServerInfo? {
             val split = input.split(",")
             if(split.size==4) {
                 val name = split[0]
@@ -16,7 +16,7 @@ data class Info(
                 val os = split[2]
                 val port = split[3].toIntOrNull()
                 if(!name.isNullOrBlank() && !ip.isNullOrBlank() && !os.isNullOrBlank() && port != null){
-                    return Info(name, ip, os, port)
+                    return ServerInfo(name, ip, os, port)
                 }
             }
             return null
