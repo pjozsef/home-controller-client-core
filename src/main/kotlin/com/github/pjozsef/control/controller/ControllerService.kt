@@ -15,6 +15,15 @@ interface ControllerService {
     @GET("command/supported")
     fun supportedCommands(): Single<Response<SupportedCommands>>
 
+    @POST("command/shutdown")
+    fun shutdown(): Single<Response<Void>>
+
+    @POST("command/restart")
+    fun restart(): Single<Response<Void>>
+
+    @POST("command/suspend")
+    fun suspend(): Single<Response<Void>>
+
     @POST("command/playpause")
     fun playPause(): Single<Response<Void>>
 
